@@ -1,0 +1,18 @@
+services:
+  ubuntu_vpn:
+    image: pooriaas/vpn_container
+    container_name: ubuntu_vpn
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "8080:8080"
+      - "8181:8181"
+      - "8282:8282"
+      - "9090:9090"
+    restart: always
+    command: >
+      /bin/bash -c "
+      /etc/openvpn/startup.sh &&
+      tail -f /dev/null
+      "
